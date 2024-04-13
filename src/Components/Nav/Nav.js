@@ -29,19 +29,20 @@ export default function Nav() {
   useEffect(() => {
     const span = document.querySelector("nav span.active");
     const anchor = document.querySelector("nav a.active");
-    const fromTop = anchor.offsetTop;
-
-    span.style.setProperty("--y", `${fromTop}px`);
-    window.onresize = () => {
-      // moving span active into the target
-      const span = document.querySelector("nav span.active");
-      const anchor = document.querySelector("nav a.active");
-      // const fromTop = anchor.offsetTop;
-      const widthSpan = anchor.offsetWidth;
-      // span.style.setProperty("--y", `${fromTop}px`);
-      // span.style.setProperty("--widthSpan", `${widthSpan}px`);
-      span.style.width = `${widthSpan}px`;
-    };
+    if (anchor === undefined) {
+      const fromTop = anchor.offsetTop;
+      span.style.setProperty("--y", `${fromTop}px`);
+      window.onresize = () => {
+        // moving span active into the target
+        const span = document.querySelector("nav span.active");
+        const anchor = document.querySelector("nav a.active");
+        // const fromTop = anchor.offsetTop;
+        const widthSpan = anchor.offsetWidth;
+        // span.style.setProperty("--y", `${fromTop}px`);
+        // span.style.setProperty("--widthSpan", `${widthSpan}px`);
+        span.style.width = `${widthSpan}px`;
+      };
+    }
   }, []);
   return (
     <nav className="d-flex flex-column bg-boxes">
